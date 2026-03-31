@@ -1,4 +1,4 @@
-# Sleuth-kit-intro-Forensics-Git-Disko4-Pico-CTF
+# Sleuth-kit-Intro (Forensics-Git,Disko4-Pico-CTF)
 Giving an introduction to Sleuth Kit, through the Forensics Git 0-2 and Disko4 Challenges from pico CTF
 
 
