@@ -121,3 +121,97 @@ Now it time to use basic navigation command to find the flag from the _ctf-playe
 
 
 
+
+## Forensics Git 1
+
+This challenge the concept of git.
+
+```
+man git
+```
+
+Hint:
+How can you checkout the files of a previous commit?
+
+Commands will be similar to the first challenge.
+
+
+<img width="1182" height="872" alt="image" src="https://github.com/user-attachments/assets/53c7645b-45f9-4160-b3c8-8fb883e0d1a9" />
+
+You can extract the targeted directory or mount the disk and work on it.
+
+When mounting we use the offset of the image which we calculate it using the Sector size.
+
+From your mmls output:
+
+```
+mmls disk2.img  
+DOS Partition Table
+Offset Sector: 0
+Units are in 512-byte sectors
+
+```
+
+* The disk is divided into sectors
+* Each sector = 512 bytes
+* The partition start (e.g. 2048) is in sectors, not bytes
+
+What mount needs is offset,the offset must be in bytes, not sectors.
+
+Conversion is:
+
+offset (bytes) = start_sector × sector_size
+
+1140736*512= 584056832
+
+```
+sudo mount -o loop,offset=584056832 disk2.img /mnt/disk2
+
+```
+
+I had a dir ready in my _/mnt/_ on my machine ready for mounting.
+
+The other approach is extracing the target dir which is the home dir using the _tsk_recover_ command
+
+```
+tsk_recover -o 1140736 -d 64770 -e disk2.img ./
+
+```
+
+After a few command here and there I found the git repo dir, and got the commit's hash 
+
+
+
+
+
+<img width="1693" height="543" alt="image" src="https://github.com/user-attachments/assets/cb7a5432-5ee1-4c28-8a64-1ff45a57e9f2" />
+
+
+
+
+```
+ git show 5fb8194539c770a830b8ba089a50778c07072b03
+```
+
+
+git show - A Git command that displays information about Git objects (commits, tags, blobs, trees)
+
+5fb8194539c770a830b8ba089a50778c07072b03 - A Git commit hash (SHA-1 identifier) - this is a 40-character hexadecimal string that uniquely identifies a specific commit in the repository
+
+
+
+
+<img width="1708" height="926" alt="image" src="https://github.com/user-attachments/assets/4a6b4951-aeab-4b1e-be95-6bb2a522cae6" />
+
+
+
+
+
+
+
+
+
+
+
+
+
