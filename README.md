@@ -124,7 +124,7 @@ Now it time to use basic navigation command to find the flag from the _ctf-playe
 
 ## Forensics Git 1
 
-This challenge the concept of git.
+This challenge text the concept of git.
 
 ```
 man git
@@ -205,7 +205,75 @@ git show - A Git command that displays information about Git objects (commits, t
 
 
 
+## Forensics Git 2
 
+**Description**
+The agents interrupted the perpetrator's disk deletion routine. Can you recover this git repo?
+
+Hint:
+
+We think the deletion was interrupted before any git objects were touched
+
+* Follow the step we've had in the previous challenges
+* Do you want to mount or extract 
+
+
+<img width="1708" height="926" alt="image" src="https://github.com/user-attachments/assets/c5605b1d-fc39-4a93-8290-f164000c101f" />
+
+
+
+## Disko-4
+
+**Description**
+Can you find the flag in this disk image? This time I deleted the file! Let see you get it now!
+
+Hint
+How would you look for deleted files?
+
+* The image from this challenge is a Logical disk image. The _mmls_ command did not return any output.
+
+<img width="806" height="234" alt="image" src="https://github.com/user-attachments/assets/8920e483-8a32-4702-a075-23143e828116" />
+
+
+* How do we look for deleted files?
+
+Remember we use _fls_ to list files and directories in a disk image.
+
+Let's go through its manual to see if we can find anything to help 
+
+```
+man fls
+```
+
+-r     Recursively display directories.  This will not follow deleted directories, because it can't.
+
+-d     Display deleted entries only
+
+-p     Display the full path for each entry.  By default it denotes the directory depth on recursive runs with a '+' sign.
+
+* Those are the arguments I decided to go with.
+* Remember the disko-4.dd is a logical image meaning it has no sectors, or even where they start and end.
+
+* The command will be fairly simple 
+
+```
+fls -r -d -p disko-4.dd
+```
+
+Next is extracting the output using _icat_
+
+icat - Output the contents of a file based on its inode number.
+
+```
+icat  disko-4.dd 532021 > dont-delete.gz
+
+```
+
+<img width="780" height="387" alt="image" src="https://github.com/user-attachments/assets/e2282898-fe9d-4c93-b3dd-efa1cc3431a7" />
+
+
+
+**I believe its a wrap :)**
 
 
 
