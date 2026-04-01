@@ -2,12 +2,14 @@
 Giving an introduction to Sleuth Kit, through the Forensics Git 0-2 and Disko4 Challenges from pico CTF
 
 
-The Sleuth Kit (TSK) is an open-source collection of command-line digital forensics tools designed for investigating disk images and file systems. I
+The Sleuth Kit (TSK) is an open-source collection of command-line digital forensics tools designed for investigating disk images and file systems. 
+
 I'll tackle a series of Pico CTF challenges while using and understanding Sleuth Kit.
+
 First I'll start with Forensics Git series:
 
 
-Forensics Git 0
+# Forensics Git 0
 
 Description:
 Can you find the flag in this disk image?
